@@ -60,5 +60,5 @@
 		"vite": "^4.1.0"
 	},
 	"author": "GergoN02",
-    "packageManager": "yarn"
+	"packageManager": "yarn@1.22.19"
 }
