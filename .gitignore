@@ -3,3 +3,5 @@ node_modules
 *.local
 .eslintcache
 .stylelintcache
+src/api/*
+!src/api/swagger.yaml
