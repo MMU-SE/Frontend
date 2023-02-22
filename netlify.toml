@@ -15,7 +15,7 @@
   publish = "dist/"
 
   # Default build command.
-  command = "yarn build"
+  command = "yarn generate && yarn build"
 
 [[plugins]]
   # Installs the Lighthouse Build Plugin for all deploy contexts
@@ -28,5 +28,5 @@
 # values to keep them out of your source repository.
 [context.production]
   publish = "dist/"
-  command = "yarn build"
+  command = "yarn generate && yarn build"
   environment = { NODE_VERSION = "16.0.0" }

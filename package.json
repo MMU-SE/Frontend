@@ -14,12 +14,14 @@
 		"lint": "npm run run-tsc && npm run run-eslint && npm run run-stylelint"
 	},
 	"dependencies": {
+		"@headlessui/react": "^1.7.11",
 		"@nabla/vite-plugin-eslint": "^1.4.2",
 		"@tanstack/react-location": "^3.7.4",
 		"@tanstack/react-location-devtools": "^3.4.4",
 		"@tanstack/react-router": "^0.0.1-beta.83",
 		"clsx": "^1.2.1",
 		"commitizen": "^4.3.0",
+		"msw": "^1.0.1",
 		"prettier": "^2.8.1",
 		"prettier-plugin-tailwindcss": "0.1.13",
 		"react": "^18.2.0",
@@ -60,5 +62,8 @@
 		"vite": "^4.1.0"
 	},
 	"author": "GergoN02",
-	"packageManager": "yarn@1.22.19"
+	"packageManager": "yarn@1.22.19",
+	"msw": {
+		"workerDirectory": "public"
+	}
 }
