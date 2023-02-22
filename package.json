@@ -14,11 +14,14 @@
 		"lint": "npm run run-tsc && npm run run-eslint && npm run run-stylelint"
 	},
 	"dependencies": {
+		"@ant-design/icons": "^5.0.1",
 		"@headlessui/react": "^1.7.11",
 		"@nabla/vite-plugin-eslint": "^1.4.2",
 		"@tanstack/react-location": "^3.7.4",
 		"@tanstack/react-location-devtools": "^3.4.4",
 		"@tanstack/react-router": "^0.0.1-beta.83",
+		"@total-typescript/ts-reset": "^0.3.7",
+		"antd": "^5.2.2",
 		"clsx": "^1.2.1",
 		"commitizen": "^4.3.0",
 		"msw": "^1.0.1",

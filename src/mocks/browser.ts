@@ -4,10 +4,10 @@ import combinedHandlers from './handlers'
 
 const worker = setupWorker(...combinedHandlers)
 
-window.mswStart = () => {
+export const mswStart = (): void => {
 	worker.start().catch(() => {})
 }
-window.mswStop = () => {
+export const mswStop = (): void => {
 	worker.stop()
 }
 
