@@ -75,4 +75,3 @@ definitions:
         example: 10
       location:
         type: string
-        example: Top Shelf

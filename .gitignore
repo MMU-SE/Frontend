@@ -5,3 +5,4 @@ node_modules
 .stylelintcache
 src/api/*
 !src/api/swagger.yaml
+yarn-error.log

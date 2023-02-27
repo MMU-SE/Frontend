@@ -3,13 +3,14 @@ import type { ReactElement } from 'react'
 import { ReactLocationDevtools } from '@tanstack/react-location-devtools'
 import routes from 'routes'
 import MockToggle from 'components/Core/MockToggle/MockToggle'
+import type { LocationGenerics } from 'util/Location'
 
-const reactLocation = new ReactLocation()
+const reactLocation = new ReactLocation<LocationGenerics>()
 
 const App = (): ReactElement => (
 	<Router location={reactLocation} routes={routes}>
 		<Outlet />
-		{import.meta.env.DEV ? (
+		{import.meta.env.PROD ? (
 			<div id='devtools'>
 				<ReactLocationDevtools initialIsOpen={false} />
 			</div>
