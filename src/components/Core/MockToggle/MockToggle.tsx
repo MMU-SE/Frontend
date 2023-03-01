@@ -38,7 +38,7 @@ const MockToggle = (): ReactElement => {
 		>
 			<span
 				className={clsx(
-					'inline-block h-4 w-4 transform rounded-full bg-white transition',
+					'bg-yellow inline-block h-4 w-4 transform rounded-full transition',
 					{
 						'translate-x-6': mockingEnabled,
 						'translate-x-1': !mockingEnabled
