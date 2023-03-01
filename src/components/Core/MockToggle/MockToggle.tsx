@@ -1,4 +1,4 @@
-import { Switch } from '@headlessui/react'
+import { Switch } from '@mui/material'
 import { OpenAPI } from 'api'
 import clsx from 'clsx'
 import { mswStart, mswStop } from 'mocks/browser'
@@ -29,23 +29,9 @@ const MockToggle = (): ReactElement => {
 			checked={mockingEnabled}
 			onChange={onMockingToggled}
 			className={clsx(
-				'relative inline-flex h-6 w-11 items-center rounded-full',
-				{
-					'bg-light-blue': mockingEnabled,
-					'bg-grey': !mockingEnabled
-				}
+				'relative inline-flex h-6 w-11 items-center rounded-full'
 			)}
-		>
-			<span
-				className={clsx(
-					'inline-block h-4 w-4 transform rounded-full bg-white transition',
-					{
-						'translate-x-6': mockingEnabled,
-						'translate-x-1': !mockingEnabled
-					}
-				)}
-			/>
-		</Switch>
+		/>
 	)
 }
 
