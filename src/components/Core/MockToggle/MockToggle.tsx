@@ -1,6 +1,5 @@
 import { Switch } from '@mui/material'
 import { OpenAPI } from 'api'
-import clsx from 'clsx'
 import { mswStart, mswStop } from 'mocks/browser'
 import type { ReactElement } from 'react'
 import { useState } from 'react'
@@ -24,15 +23,7 @@ const MockToggle = (): ReactElement => {
 		}
 	}
 
-	return (
-		<Switch
-			checked={mockingEnabled}
-			onChange={onMockingToggled}
-			className={clsx(
-				'relative inline-flex h-6 w-11 items-center rounded-full'
-			)}
-		/>
-	)
+	return <Switch checked={mockingEnabled} onChange={onMockingToggled} />
 }
 
 export default MockToggle

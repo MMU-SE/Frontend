@@ -1,9 +1,9 @@
 import { faBell } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import UserMenu from 'components/Core/UserMenu/UserMenu'
+import { Box, IconButton, Typography } from '@mui/material'
+import ReferenceLink from 'components/Core/ReferenceLink/ReferenceLink'
 import SearchBox from 'components/Input/SearchBox/SearchBox'
 import type { ReactElement } from 'react'
-import { HEADER_LINKS } from '../NavDefinitions'
 
 export interface HeaderLink {
 	label: string
@@ -11,16 +11,25 @@ export interface HeaderLink {
 }
 
 const Header = (): ReactElement => (
-	<div className='flex flex-row justify-end gap-6 bg-dark-blue py-2'>
-		<span className='my-auto mr-auto ml-4 font-semibold text-white'>
+	<Box
+		display='flex'
+		flexDirection='row'
+		justifyContent='flex-end'
+		alignItems='center'
+		gap={6}
+	>
+		<Typography
+			sx={{
+				mr: 'auto'
+			}}
+		>
 			Atlas Barcode
-		</span>
+		</Typography>
 		<SearchBox />
-		<UserMenu navLinks={HEADER_LINKS} />
-		<button type='button' className='mr-4'>
-			<FontAwesomeIcon icon={faBell} size='xl' />
-		</button>
-	</div>
+		<IconButton component={ReferenceLink}>
+			<FontAwesomeIcon icon={faBell} size='lg' />
+		</IconButton>
+	</Box>
 )
 
 export default Header

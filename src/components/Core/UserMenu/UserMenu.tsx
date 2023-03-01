@@ -1,26 +1,6 @@
-import type { LinkProps } from '@tanstack/react-location'
-import { Link } from '@tanstack/react-location'
-import clsx from 'clsx'
-import type { HeaderLink } from 'components/Navigation/Header/Header'
 import type { ReactElement } from 'react'
-import { forwardRef, Fragment } from 'react'
 
-interface UserMenuProperties {
-	navLinks: HeaderLink[]
-}
-
-const ReferenceLink = forwardRef<HTMLAnchorElement, LinkProps>(
-	(properties, reference) => {
-		const { children, ...restProperties } = properties
-		return (
-			<Link _ref={reference} {...restProperties}>
-				{children}
-			</Link>
-		)
-	}
-)
-
-const UserMenu = ({ navLinks }: UserMenuProperties): ReactElement => (
+const UserMenu = (): ReactElement => (
 	// <Menu>
 	// 	<Menu.Button>
 	// 		<div className='relative h-10 w-10 overflow-hidden rounded-full bg-light-grey'>
