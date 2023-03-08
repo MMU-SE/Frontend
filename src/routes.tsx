@@ -1,7 +1,7 @@
 import type { Route } from '@tanstack/react-location'
 import { Navigate, Outlet } from '@tanstack/react-location'
 import PageWrapper from 'components/Layout/PageWrapper/PageWrapper'
-import { DASHBOARD_TABS } from 'components/Navigation/NavDefinitions'
+import Dashboard from 'pages/DashboardController/Dashboard/Dashboard'
 import DashboardController from 'pages/DashboardController/DashboardController'
 import SomePage from 'pages/SomePage/SomePage'
 import type { LocationGenerics } from 'util/Location'
@@ -14,14 +14,14 @@ const routes: Route<LocationGenerics>[] = [
 	{
 		path: '/user',
 		element: (
-			<PageWrapper fillHeight>
+			<PageWrapper>
 				<Outlet />
 			</PageWrapper>
 		),
 		children: [
 			{
 				path: 'dashboard',
-				element: <DashboardController links={DASHBOARD_TABS} />
+				element: <DashboardController />
 			},
 			{
 				path: '/products',

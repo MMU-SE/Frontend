@@ -1,5 +1,7 @@
 import { Box } from '@mui/material'
 import Header from 'components/Navigation/Header/Header'
+import { SIDEBAR_SECTIONS } from 'components/Navigation/NavDefinitions'
+import SideBar from 'components/Navigation/Sidebar/Sidebar'
 import type { ReactElement, ReactNode } from 'react'
 
 interface PageWrapperProperties {
@@ -7,19 +9,20 @@ interface PageWrapperProperties {
 }
 
 const PageWrapper = ({ children }: PageWrapperProperties): ReactElement => (
-	<Box display='flex' flexDirection='column'>
-		<Header />
-		<Box
-			display='flex'
-			flexDirection='column'
-			width='100%'
-			sx={{
-				mx: 'auto',
-				mt: 4,
-				px: 4
-			}}
-		>
-			{children}
+	<Box display='flex'>
+		<SideBar sections={SIDEBAR_SECTIONS} />
+		<Box>
+			<Header />
+			<Box
+				component='main'
+				sx={{
+					p: 3,
+					width: '100%',
+					overflow: 'auto'
+				}}
+			>
+				{children}
+			</Box>
 		</Box>
 	</Box>
 )

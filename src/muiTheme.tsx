@@ -19,18 +19,6 @@ const theme = createTheme({
 		}
 	},
 	palette: {
-		primary: {
-			main: '#1E4E79'
-		},
-		secondary: {
-			main: '#753B7D'
-		},
-		success: {
-			main: '#0B6403'
-		},
-		error: {
-			main: '#B20101'
-		},
 		black: { main: '#000000' },
 		orange: { main: '#D8944E' },
 		lightBlue: { main: '#3173DC' },

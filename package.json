@@ -19,6 +19,7 @@
 		"@fortawesome/fontawesome-svg-core": "^6.3.0",
 		"@fortawesome/free-solid-svg-icons": "^6.3.0",
 		"@fortawesome/react-fontawesome": "^0.2.0",
+		"@mui/icons-material": "^5.11.11",
 		"@mui/material": "^5.11.11",
 		"@nabla/vite-plugin-eslint": "^1.4.2",
 		"@tanstack/react-location": "^3.7.4",

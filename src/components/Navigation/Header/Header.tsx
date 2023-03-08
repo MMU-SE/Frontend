@@ -16,11 +16,13 @@ const Header = (): ReactElement => (
 		flexDirection='row'
 		justifyContent='flex-end'
 		alignItems='center'
+		bgcolor='lightblue'
 		gap={6}
 	>
 		<Typography
 			sx={{
-				mr: 'auto'
+				mr: 'auto',
+				ml: 2
 			}}
 		>
 			Atlas Barcode
