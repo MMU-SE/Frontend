@@ -1,4 +1,5 @@
 import { Box } from '@mui/material'
+import MockToggle from 'components/Core/MockToggle/MockToggle'
 import Header from 'components/Navigation/Header/Header'
 import { SIDEBAR_SECTIONS } from 'components/Navigation/NavDefinitions'
 import SideBar from 'components/Navigation/Sidebar/Sidebar'
@@ -24,6 +25,7 @@ const PageWrapper = ({ children }: PageWrapperProperties): ReactElement => (
 				{children}
 			</Box>
 		</Box>
+		<MockToggle />
 	</Box>
 )
 

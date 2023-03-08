@@ -33,18 +33,77 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/ProductsResponse'
+    post:
+      summary: Create new product
+      operationId: addProduct
+      tags:
+        - Products
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/ProductCreateRequest'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/Product'
+  /api/v1/products/{id}:
+    get:
+      summary: Get single products
+      operationId: getProduct
+      tags:
+        - Product
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Product'
+    put:
+      summary: Update product
+      operationId: updateProduct
+      tags:
+        - Product
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: string
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/ProductUpdateRequest'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/Product'
+    delete:
+      summary: Delete product
+      operationId: deleteProduct
+      tags:
+        - Product
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: string
+      responses:
+        '202':
+          description: Accepted
 definitions:
   ProductsResponse:
     type: object
     required:
-      - total
       - limit
       - startAfterId
       - data
     properties:
-      total:
-        type: number
-        example: 100
       limit:
         type: number
         example: 20
@@ -60,8 +119,10 @@ definitions:
     required:
       - id
       - name
-      - quantity
-      - location
+      - description
+      - price
+      - createdAt
+      - updatedAt
     properties:
       id:
         type: string
@@ -69,9 +130,50 @@ definitions:
         example: e67a1c65-085a-4794-b070-1d33e305930c
       name:
         type: string
-        example: Product Name
+        example: 'Blue Pencil'
+      description:
+        type: string
+        example: 'Nice pencil'
+      price:
+        type: number
+        example: 100
+      createdAt:
+        type: string
+        example: '2011-10-05T14:48:00.000Z'
+      updatedAt:
+        type: string
+        example: '2011-10-05T14:48:00.000Z'
+  ProductCreateRequest:
+    type: object
+    required:
+      - name
+      - description
+      - quantity
+    properties:
+      name:
+        type: string
+        example: 'Blue Pencil'
+      description:
+        type: string
+        example: 'Nice pencil to draw with'
       quantity:
         type: number
         example: 10
-      location:
+  ProductUpdateRequest:
+    type: object
+    required:
+      - id
+    properties:
+      id:
         type: string
+        format: uuid
+        example: e67a1c65-085a-4794-b070-1d33e305930c
+      name:
+        type: string
+        example: 'Nice Pencil'
+      description:
+        type: string
+        example: 'Nice pencil'
+      price:
+        type: number
+        example: 100
