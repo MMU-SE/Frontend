@@ -51,12 +51,15 @@ const Section = ({ navLinks, isOpen }: SectionProperties): ReactElement => (
 							minWidth: 0,
 							mr: isOpen ? 3 : 'auto',
 							justifyContent: 'center',
-							color: 'darkblue'
+							color: 'yellow.main'
 						}}
 					>
 						{icon}
 					</ListItemIcon>
-					<ListItemText primary={label} sx={{ opacity: isOpen ? 1 : 0 }} />
+					<ListItemText
+						primary={label}
+						sx={{ opacity: isOpen ? 1 : 0, color: 'yellow.main' }}
+					/>
 				</ListItemButton>
 			</ListItem>
 		))}
@@ -114,8 +117,8 @@ const SideBar = ({ sections }: SideBarProperties): ReactElement => {
 			open={open}
 			sx={{
 				'& .MuiDrawer-paper': {
-					backgroundColor: 'beige',
-					color: 'darkblue'
+					backgroundColor: 'mediumGrey.main',
+					color: 'darkGrey.main'
 				}
 			}}
 		>
@@ -123,7 +126,7 @@ const SideBar = ({ sections }: SideBarProperties): ReactElement => {
 				onClick={onToggleNavigation}
 				sx={{
 					ml: open ? 'auto' : 0,
-					color: 'darkblue'
+					color: 'yellow.main'
 				}}
 			>
 				{open ? <ChevronLeft /> : <MenuIcon />}

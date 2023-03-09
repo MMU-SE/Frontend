@@ -5,28 +5,22 @@
 
 declare module '@mui/material/styles' {
 	interface Palette {
-		black: Palette['primary']
-		orange: Palette['primary']
-		lightBlue: Palette['primary']
-		darkBlue: Palette['primary']
-		magenta: Palette['primary']
-		beige: Palette['primary']
-		white: Palette['primary']
-		darkGrey: Palette['primary']
-		mediumGrey: Palette['primary']
 		lightGrey: Palette['primary']
+		mediumGrey: Palette['primary']
+		darkGrey: Palette['primary']
+		yellow: Palette['primary']
+		lightBlue: Palette['primary']
+		mediumBlue: Palette['primary']
+		darkBlue: Palette['primary']
 	}
 	interface PaletteOptions {
-		black: PaletteOptions['primary']
-		orange: PaletteOptions['primary']
-		lightBlue: PaletteOptions['primary']
-		darkBlue: PaletteOptions['primary']
-		magenta: PaletteOptions['primary']
-		beige: PaletteOptions['primary']
-		white: PaletteOptions['primary']
-		darkGrey: PaletteOptions['primary']
-		mediumGrey: PaletteOptions['primary']
 		lightGrey: PaletteOptions['primary']
+		mediumGrey: PaletteOptions['primary']
+		darkGrey: PaletteOptions['primary']
+		yellow: PaletteOptions['primary']
+		lightBlue: PaletteOptions['primary']
+		mediumBlue: PaletteOptions['primary']
+		darkBlue: PaletteOptions['primary']
 	}
 }
 

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { createTheme } from '@mui/material'
+import type { PaletteMode, ThemeOptions } from '@mui/material'
 
-const theme = createTheme({
+const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
 	components: {
 		MuiButton: {
 			styleOverrides: {
@@ -19,16 +19,27 @@ const theme = createTheme({
 		}
 	},
 	palette: {
-		black: { main: '#000000' },
-		orange: { main: '#D8944E' },
-		lightBlue: { main: '#3173DC' },
-		darkBlue: { main: '#3D5175' },
-		magenta: { main: '#B75373' },
-		beige: { main: '#91857E' },
-		white: { main: '#F9FAF7' },
-		darkGrey: { main: '#4A4A4A' },
-		mediumGrey: { main: '#7D7D7D' },
-		lightGrey: { main: '#E5E5E5' }
+		mode,
+		...(mode === 'light'
+			? {
+					darkGrey: { main: '#858585' },
+					mediumGrey: { main: '#f0f0f0' },
+					lightGrey: { main: '#9da4ac' },
+					yellow: { main: '#C5A015' },
+					lightBlue: { main: '#c2fffc' },
+					mediumBlue: { main: '#75aacc' },
+					darkBlue: { main: '#789bd9' },
+					lightText: { main: '#000033' }
+			  }
+			: {
+					darkGrey: { main: '#121D26' },
+					mediumGrey: { main: '#1F2C36' },
+					lightGrey: { main: '#2F3E4E' },
+					yellow: { main: '#C5A015' },
+					lightBlue: { main: '#9EFFFA' },
+					mediumBlue: { main: '#0082B2' },
+					darkBlue: { main: '#006EC5' }
+			  })
 	},
 	spacing: 4,
 	typography: {
@@ -36,4 +47,4 @@ const theme = createTheme({
 	}
 })
 
-export default theme
+export default getDesignTokens

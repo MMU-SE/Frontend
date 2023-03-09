@@ -1,7 +1,5 @@
-import { faBell } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Box, IconButton, Typography } from '@mui/material'
-import ReferenceLink from 'components/Core/ReferenceLink/ReferenceLink'
+import { Box, Typography } from '@mui/material'
+import ThemeSwitcher from 'components/Core/ThemeSwitcher/ThemeSwitcher'
 import SearchBox from 'components/Input/SearchBox/SearchBox'
 import type { ReactElement } from 'react'
 
@@ -28,9 +26,7 @@ const Header = (): ReactElement => (
 			Inventory Manager
 		</Typography>
 		<SearchBox />
-		<IconButton component={ReferenceLink}>
-			<FontAwesomeIcon icon={faBell} size='lg' />
-		</IconButton>
+		<ThemeSwitcher />
 	</Box>
 )
 
