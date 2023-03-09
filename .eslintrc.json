@@ -86,7 +86,7 @@
 		"import/no-extraneous-dependencies": [
 			"error",
 			{
-				"devDependencies": ["vite.config.ts"]
+				"devDependencies": true
 			}
 		],
 

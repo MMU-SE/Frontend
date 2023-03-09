@@ -12,7 +12,6 @@ import {
 	ListItemText,
 	styled
 } from '@mui/material'
-import { Link } from '@tanstack/react-location'
 import ReferenceLink from 'components/Core/ReferenceLink/ReferenceLink'
 import type { ReactElement, ReactNode } from 'react'
 import { useState } from 'react'
@@ -25,7 +24,7 @@ interface NavLinks {
 
 export interface SectionProperties {
 	navLinks: NavLinks[]
-	isOpen: boolean
+	isOpen?: boolean
 }
 
 interface SideBarProperties {

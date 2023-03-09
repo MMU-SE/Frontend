@@ -25,7 +25,7 @@ const Header = (): ReactElement => (
 				ml: 2
 			}}
 		>
-			Atlas Barcode
+			Inventory Manager
 		</Typography>
 		<SearchBox />
 		<IconButton component={ReferenceLink}>

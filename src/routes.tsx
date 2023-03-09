@@ -1,10 +1,9 @@
 import type { Route } from '@tanstack/react-location'
 import { Navigate, Outlet } from '@tanstack/react-location'
 import PageWrapper from 'components/Layout/PageWrapper/PageWrapper'
-import Dashboard from 'pages/DashboardController/Dashboard/Dashboard'
 import DashboardController from 'pages/DashboardController/DashboardController'
 import SomePage from 'pages/SomePage/SomePage'
-import type { LocationGenerics } from 'util/Location'
+import type { LocationGenerics } from 'util/types/Location'
 
 const routes: Route<LocationGenerics>[] = [
 	{

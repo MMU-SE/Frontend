@@ -1,12 +1,11 @@
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { SearchTab } from 'util/Location'
+import { SearchTab } from 'util/types/Location'
 import type { HeaderLink } from './Header/Header'
 import type { SectionProperties } from './Sidebar/Sidebar'
 
-export const SIDEBAR_SECTIONS: SectionProperties[] = [
+export const SIDEBAR_SECTIONS: Omit<SectionProperties[], 'isOpen'> = [
 	{
-		heading: 'Navigation',
 		navLinks: [
 			{
 				label: 'Dashboard',
