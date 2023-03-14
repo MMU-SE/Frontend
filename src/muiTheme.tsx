@@ -29,7 +29,7 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
 					lightBlue: { main: '#c2fffc' },
 					mediumBlue: { main: '#75aacc' },
 					darkBlue: { main: '#789bd9' },
-					lightText: { main: '#000033' }
+					lightText: { main: '#E0E8EF' }
 			  }
 			: {
 					darkGrey: { main: '#121D26' },
@@ -38,7 +38,8 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
 					yellow: { main: '#C5A015' },
 					lightBlue: { main: '#9EFFFA' },
 					mediumBlue: { main: '#0082B2' },
-					darkBlue: { main: '#006EC5' }
+					darkBlue: { main: '#006EC5' },
+					lightText: { main: '#E0E8EF' }
 			  })
 	},
 	spacing: 4,

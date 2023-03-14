@@ -3,6 +3,17 @@
 
 /// <reference types="vite/client" />
 
+import 'i18next'
+import type { defaultNS, resources } from 'locales'
+
+declare module 'i18next' {
+	// Extend the i18next types for autocomplete
+	interface CustomTypeOptions {
+		defaultNS: typeof defaultNS
+		resources: (typeof resources)['en']
+	}
+}
+
 declare module '@mui/material/styles' {
 	interface Palette {
 		lightGrey: Palette['primary']
@@ -12,6 +23,7 @@ declare module '@mui/material/styles' {
 		lightBlue: Palette['primary']
 		mediumBlue: Palette['primary']
 		darkBlue: Palette['primary']
+		lightText: Palette['primary']
 	}
 	interface PaletteOptions {
 		lightGrey: PaletteOptions['primary']
@@ -21,7 +33,6 @@ declare module '@mui/material/styles' {
 		lightBlue: PaletteOptions['primary']
 		mediumBlue: PaletteOptions['primary']
 		darkBlue: PaletteOptions['primary']
+		lightText: PaletteOptions['primary']
 	}
 }
-
-export {}

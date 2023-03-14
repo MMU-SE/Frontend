@@ -1,7 +1,15 @@
-import { ChevronLeft } from '@mui/icons-material'
+import {
+	Assessment,
+	Category,
+	ChevronLeft,
+	Home,
+	Inventory,
+	LocalShipping
+} from '@mui/icons-material'
 import MenuIcon from '@mui/icons-material/Menu'
 import type { CSSObject, Theme } from '@mui/material'
 import {
+	Box,
 	Divider,
 	Drawer as MuiDrawer,
 	IconButton,
@@ -15,6 +23,7 @@ import {
 import ReferenceLink from 'components/Core/ReferenceLink/ReferenceLink'
 import type { ReactElement, ReactNode } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface NavLinks {
 	label: string
@@ -25,10 +34,6 @@ interface NavLinks {
 export interface SectionProperties {
 	navLinks: NavLinks[]
 	isOpen?: boolean
-}
-
-interface SideBarProperties {
-	sections: SectionProperties[]
 }
 
 const drawerWidth = 240
@@ -83,7 +88,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
 	overflowX: 'hidden',
 	width: `calc(${theme.spacing(7)} + 1px)`,
 	[theme.breakpoints.up('sm')]: {
-		width: `calc(${theme.spacing(8)} + 1px)`
+		width: `calc(${theme.spacing(12)} + 1px)`
 	}
 })
 
@@ -104,12 +109,41 @@ const Drawer = styled(MuiDrawer, {
 	})
 }))
 
-const SideBar = ({ sections }: SideBarProperties): ReactElement => {
+const SideBar = (): ReactElement => {
 	const [open, setOpen] = useState(false)
+	const { t } = useTranslation('common')
 
 	const onToggleNavigation = (): void => {
 		setOpen(!open)
 	}
+
+	const SIDEBAR_SECTIONS: NavLinks[] = [
+		{
+			label: t('sidebar.dashboard'),
+			to: '/user/dashboard',
+			icon: <Home />
+		},
+		{
+			label: t('sidebar.products'),
+			to: '/user/products',
+			icon: <Inventory />
+		},
+		{
+			label: t('sidebar.categories'),
+			to: '/user/categories',
+			icon: <Category />
+		},
+		{
+			label: t('sidebar.orders'),
+			to: '/user/orders',
+			icon: <LocalShipping />
+		},
+		{
+			label: t('sidebar.reports'),
+			to: '/user/reports',
+			icon: <Assessment />
+		}
+	]
 
 	return (
 		<Drawer
@@ -126,19 +160,18 @@ const SideBar = ({ sections }: SideBarProperties): ReactElement => {
 				onClick={onToggleNavigation}
 				sx={{
 					ml: open ? 'auto' : 0,
-					color: 'yellow.main'
+					color: 'yellow.main',
+					my: 1
 				}}
 			>
 				{open ? <ChevronLeft /> : <MenuIcon />}
 			</IconButton>
 			<List>
-				{sections.map(({ navLinks }) => (
-					<>
-						<Divider />
-						<Section navLinks={navLinks} isOpen={open} />
-						<Divider />
-					</>
-				))}
+				<Box>
+					<Divider />
+					<Section navLinks={SIDEBAR_SECTIONS} isOpen={open} />
+					<Divider />
+				</Box>
 			</List>
 		</Drawer>
 	)

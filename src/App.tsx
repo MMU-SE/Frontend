@@ -22,7 +22,7 @@ export const ColorModeContext = createContext<ColorModeContextType>(
 )
 
 const App = (): ReactElement => {
-	const [mode, setMode] = useState<PaletteMode>('light')
+	const [mode, setMode] = useState<PaletteMode>('dark')
 
 	const colorMode = useMemo(
 		() => ({

@@ -2,6 +2,7 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Box, Button, FormControl, TextField } from '@mui/material'
 import type { ReactElement } from 'react'
 import { useEffect } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
@@ -21,6 +22,7 @@ const SearchBox = (): ReactElement => {
 
 	const onSubmit: SubmitHandler<FormInputs> = data => {
 		// TODO: Do something with the search input
+		console.log(data)
 	}
 
 	useEffect(() => {
@@ -29,20 +31,34 @@ const SearchBox = (): ReactElement => {
 		}
 	}, [formState.isSubmitSuccessful, reset])
 	return (
-		<form onSubmit={onHandleSubmit(onSubmit)} className='flex flex-row'>
-			<input
-				placeholder='Search'
+		<Box
+			sx={{
+				display: 'flex',
+				flexDirection: 'row',
+				height: 56,
+				alignItems: 'center'
+			}}
+		>
+			<TextField
+				id='search'
+				label='Search'
+				aria-describedby='search-box'
+				variant='outlined'
+				size='small'
 				{...register('search')}
-				className='text-sm text-balck block w-full rounded-l-lg border border-dark-blue bg-light-grey py-2 pl-10 focus:ring-light-blue'
 			/>
-			<button
-				type='submit'
-				name='Search'
-				className='rounded-r-lg bg-light-blue'
+			<Button
+				onClick={onHandleSubmit(onSubmit)}
+				size='large'
+				variant='contained'
+				sx={{
+					py: 3,
+					ml: 1
+				}}
 			>
-				<FontAwesomeIcon icon={faSearch} className='px-4' />
-			</button>
-		</form>
+				<FontAwesomeIcon icon={faSearch} />
+			</Button>
+		</Box>
 	)
 }
 
