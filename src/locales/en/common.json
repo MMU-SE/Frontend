@@ -1,0 +1,12 @@
+{
+	"header": {
+		"title": "Inventory Manager"
+	},
+	"sidebar": {
+		"dashboard": "Dashboard",
+		"products": "Products",
+		"categories": "Categories",
+		"orders": "Orders",
+		"reports": "Reports"
+	}
+}

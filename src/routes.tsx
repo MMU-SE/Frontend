@@ -1,10 +1,9 @@
 import type { Route } from '@tanstack/react-location'
 import { Navigate, Outlet } from '@tanstack/react-location'
 import PageWrapper from 'components/Layout/PageWrapper/PageWrapper'
-import { DASHBOARD_TABS } from 'components/Navigation/NavDefinitions'
-import DashboardController from 'pages/DashboardController/DashboardController'
-import SomePage from 'pages/SomePage/SomePage'
-import type { LocationGenerics } from 'util/Location'
+import Dashboard from 'pages/Dashboard/Dashboard'
+import NotFound from 'pages/NotFound/NotFound'
+import type { LocationGenerics } from 'util/types/Location'
 
 const routes: Route<LocationGenerics>[] = [
 	{
@@ -14,33 +13,18 @@ const routes: Route<LocationGenerics>[] = [
 	{
 		path: '/user',
 		element: (
-			<PageWrapper fillHeight>
+			<PageWrapper>
 				<Outlet />
 			</PageWrapper>
 		),
 		children: [
 			{
 				path: 'dashboard',
-				element: <DashboardController links={DASHBOARD_TABS} />
-			},
-			{
-				path: '/products',
-				element: <SomePage />
-			},
-			{
-				path: '/categories',
-				element: <SomePage />
-			},
-			{
-				path: '/customers',
-				element: <SomePage />
-			},
-			{
-				path: '/reports',
-				element: <SomePage />
+				element: <Dashboard />
 			}
 		]
-	}
+	},
+	{ path: '*', element: <NotFound /> }
 ]
 
 export default routes
