@@ -4,6 +4,7 @@ import PageWrapper from 'components/Layout/PageWrapper/PageWrapper'
 import Dashboard from 'pages/Dashboard/Dashboard'
 import NotFound from 'pages/NotFound/NotFound'
 import Products from 'pages/Products/Products'
+import SingleProductView from 'pages/Products/SingleProductView/SingleProductView'
 import type { LocationGenerics } from 'util/types/Location'
 
 const routes: Route<LocationGenerics>[] = [
@@ -25,7 +26,17 @@ const routes: Route<LocationGenerics>[] = [
 			},
 			{
 				path: 'products',
-				element: <Products />
+				element: <Outlet />,
+				children: [
+					{
+						path: '/',
+						element: <Products />
+					},
+					{
+						path: ':productId',
+						element: <SingleProductView />
+					}
+				]
 			}
 		]
 	},

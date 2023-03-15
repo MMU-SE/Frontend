@@ -10,6 +10,7 @@ import usePagination from 'hooks/usePagination'
 import type { ReactElement } from 'react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import type { LocationGenerics } from 'util/types/Location'
 
 interface ProductsTableDefinition {
 	id: string
@@ -26,7 +27,7 @@ interface TableActionsProperties {
 
 const Products = (): ReactElement => {
 	const { t } = useTranslation('products')
-	const navigate = useNavigate()
+	const navigate = useNavigate<LocationGenerics>()
 	const {
 		pageSize,
 		pageNumber,
@@ -45,13 +46,9 @@ const Products = (): ReactElement => {
 	const { data: productsData } = useProductsQuery(queryOptions)
 
 	const onHandleTableActions = useCallback(
-		({ to, search }: TableActionsProperties) => {
+		({ to }: TableActionsProperties) => {
 			navigate({
-				to,
-				search: {
-					// TODO: implement proper routing
-					search
-				}
+				to
 			})
 		},
 		[navigate]
@@ -129,8 +126,7 @@ const Products = (): ReactElement => {
 						icon={<Visibility />}
 						onClick={() =>
 							onHandleTableActions({
-								to: parameters.row.id,
-								search: parameters.row.name
+								to: parameters.row.id
 							})
 						}
 						showInMenu

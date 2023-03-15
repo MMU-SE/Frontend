@@ -12,6 +12,11 @@ export interface LocationSearchGenerics {
 	rowsPerPage: number
 }
 
+export interface LocationParametersGenerics {
+	productId: string
+}
+
 export type LocationGenerics = MakeGenerics<{
 	Search: Partial<LocationSearchGenerics>
+	Params: Partial<LocationParametersGenerics>
 }>
