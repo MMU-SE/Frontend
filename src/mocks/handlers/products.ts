@@ -1,5 +1,5 @@
-import type { ProductsResponse } from 'api'
-import { getRandomProducts } from 'mocks/data/products'
+import type { Product, ProductsResponse } from 'api'
+import { generateProduct, getRandomProducts } from 'mocks/data/products'
 import { rest } from 'msw'
 
 const handlers = [
@@ -28,6 +28,11 @@ const handlers = [
 
 			return response(context.status(200), context.json(result))
 		}
+	),
+	rest.get<never, never, Product>(
+		'/api/v1/products/:id',
+		(_, response, context) =>
+			response(context.status(200), context.json(generateProduct()))
 	)
 ]
 
