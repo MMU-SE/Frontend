@@ -1,0 +1,13 @@
+{
+	"title": "Products",
+	"table": {
+		"id": "Product ID",
+		"name": "Product Name",
+		"price": "Price",
+		"quantity": "Quantity",
+		"category": "Category",
+		"actions": {
+			"view": "View Product"
+		}
+	}
+}

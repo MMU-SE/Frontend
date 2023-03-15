@@ -102,11 +102,15 @@ definitions:
     required:
       - limit
       - startAfterId
+      - total
       - data
     properties:
       limit:
         type: number
         example: 20
+      total:
+        type: number
+        example: 50
       startAfterId:
         type: string
         example: 'uuid'
@@ -121,6 +125,8 @@ definitions:
       - name
       - description
       - price
+      - quantity
+      - category
       - createdAt
       - updatedAt
     properties:
@@ -137,6 +143,12 @@ definitions:
       price:
         type: number
         example: 100
+      quantity:
+        type: number
+        example: 20
+      category:
+        type: string
+        example: 'Office supplies'
       createdAt:
         type: string
         example: '2011-10-05T14:48:00.000Z'
