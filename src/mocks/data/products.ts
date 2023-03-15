@@ -8,9 +8,13 @@ export const generateProduct = (): Product => ({
 	name: faker.name.firstName(),
 	description: faker.company.catchPhrase(),
 	price: faker.datatype.number(),
+	quantity: faker.datatype.number(),
+	category: faker.commerce.department(),
 	createdAt: faker.date.past().toString(),
 	updatedAt: faker.date.past().toString()
 })
 
-export const getRandomProducts = (): Product[] =>
-	Array.from({ length: 30 }, generateProduct)
+export const getRandomProducts: Product[] = Array.from(
+	{ length: 30 },
+	generateProduct
+)

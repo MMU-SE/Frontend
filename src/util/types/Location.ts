@@ -9,6 +9,7 @@ export enum SearchTab {
 export interface LocationSearchGenerics {
 	tab: SearchTab
 	redirect: string
+	rowsPerPage: number
 }
 
 export type LocationGenerics = MakeGenerics<{

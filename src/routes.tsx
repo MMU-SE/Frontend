@@ -3,6 +3,7 @@ import { Navigate, Outlet } from '@tanstack/react-location'
 import PageWrapper from 'components/Layout/PageWrapper/PageWrapper'
 import Dashboard from 'pages/Dashboard/Dashboard'
 import NotFound from 'pages/NotFound/NotFound'
+import Products from 'pages/Products/Products'
 import type { LocationGenerics } from 'util/types/Location'
 
 const routes: Route<LocationGenerics>[] = [
@@ -21,6 +22,10 @@ const routes: Route<LocationGenerics>[] = [
 			{
 				path: 'dashboard',
 				element: <Dashboard />
+			},
+			{
+				path: 'products',
+				element: <Products />
 			}
 		]
 	},
