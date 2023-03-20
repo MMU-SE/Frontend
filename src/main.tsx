@@ -3,6 +3,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
 import './i18n'
+import 'typeface-poppins'
+import 'typeface-pt-sans'
 
 if (import.meta.env.VITE_ENV === 'DEV') {
 	import('./mocks/browser').catch(() => {})

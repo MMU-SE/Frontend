@@ -16,35 +16,56 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
 					borderRadius: '10px'
 				}
 			}
+		},
+		MuiPaper: {
+			styleOverrides: {
+				root: {
+					borderColor: mode === 'light' ? '#EBEBF5' : '#1C1C1E'
+				}
+			}
 		}
 	},
 	palette: {
 		mode,
 		...(mode === 'light'
 			? {
-					darkGrey: { main: '#858585' },
-					mediumGrey: { main: '#f0f0f0' },
-					lightGrey: { main: '#9da4ac' },
-					yellow: { main: '#C5A015' },
-					lightBlue: { main: '#c2fffc' },
-					mediumBlue: { main: '#75aacc' },
-					darkBlue: { main: '#789bd9' },
-					lightText: { main: '#E0E8EF' }
+					primary: {
+						main: '#7459D9'
+					},
+					secondary: {
+						main: '#5E5CE6'
+					},
+					darkGrey: { main: '#F2F2F7' },
+					mediumGrey: { main: '#FFFFFF' },
+					lightGrey: { main: '#FFFFFF' },
+					lightIndigo: { main: '#7459D9' },
+					darkIndigo: { main: '#5E5CE6' },
+					textGrey: { main: '#EBEBF5' },
+					white: { main: '#FFFFFF' },
+					textPrimary: { main: '#11263C' },
+					textSecondary: { main: '#D0D1D2' }
 			  }
 			: {
-					darkGrey: { main: '#121D26' },
-					mediumGrey: { main: '#1F2C36' },
-					lightGrey: { main: '#2F3E4E' },
-					yellow: { main: '#C5A015' },
-					lightBlue: { main: '#9EFFFA' },
-					mediumBlue: { main: '#0082B2' },
-					darkBlue: { main: '#006EC5' },
-					lightText: { main: '#E0E8EF' }
+					primary: {
+						main: '#7459D9'
+					},
+					secondary: {
+						main: '#5E5CE6'
+					},
+					darkGrey: { main: '#1C1C1E' },
+					mediumGrey: { main: '#2C2C2E' },
+					lightGrey: { main: '#3A3A3C' },
+					lightIndigo: { main: '#7459D9' },
+					darkIndigo: { main: '#5E5CE6' },
+					textGrey: { main: '#EBEBF5' },
+					white: { main: '#FFFFFF' },
+					textPrimary: { main: '#FFFFFF' },
+					textSecondary: { main: '#EBEBF5' }
 			  })
 	},
 	spacing: 4,
 	typography: {
-		fontFamily: ['Lato', 'Helvetica', '"PT Sans"', 'serif'].join(',')
+		fontFamily: ['Poppins', '"PT Sans"'].join(',')
 	}
 })
 

@@ -1,41 +1,35 @@
-import { Box } from '@mui/material'
-import DonutChart from 'components/Visualization/DonutChart/DonutChart'
+import { Box, Typography } from '@mui/material'
+import StatCard from 'components/Display/StatCard/StatCard'
+import CustomBarChart from 'components/Visualization/CustomBarChart/CustomBarChart'
+import CustomComposedChart from 'components/Visualization/CustomComposedChart/CustomComposedChart'
+import CustomPieChart from 'components/Visualization/CustomPieChart/CustomPieChart'
 import type { ReactElement } from 'react'
 
-const Dashboard = (): ReactElement => {
-	const LABELS = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
-	const DATASETS = [
-		{
-			label: '# of Votes',
-			data: [12, 19, 3, 5, 2, 3],
-			backgroundColor: [
-				'rgba(255, 99, 132, 0.2)',
-				'rgba(54, 162, 235, 0.2)',
-				'rgba(255, 206, 86, 0.2)',
-				'rgba(75, 192, 192, 0.2)',
-				'rgba(153, 102, 255, 0.2)',
-				'rgba(255, 159, 64, 0.2)'
-			],
-			borderColor: [
-				'rgba(255, 99, 132, 1)',
-				'rgba(54, 162, 235, 1)',
-				'rgba(255, 206, 86, 1)',
-				'rgba(75, 192, 192, 1)',
-				'rgba(153, 102, 255, 1)',
-				'rgba(255, 159, 64, 1)'
-			]
-		}
-	]
-
-	return (
-		<div>
-			<h1>Dashboard</h1>
-			<p>Dashboard</p>
-			<Box width={300}>
-				<DonutChart labels={LABELS} datasets={DATASETS} />
-			</Box>
-		</div>
-	)
-}
-
+const Dashboard = (): ReactElement => (
+	<Box display='flex' flexDirection='column' gap={4}>
+		<Typography component='h1' variant='h4'>
+			Dashboard
+		</Typography>
+		<Box display='flex' flexDirection='row' gap={4}>
+			<StatCard>
+				<Typography component='h2' variant='h6' fontFamily='serif'>
+					Bar Chart
+				</Typography>
+				<CustomBarChart />
+			</StatCard>
+			<StatCard>
+				<Typography component='h2' variant='h6'>
+					Pie Chart
+				</Typography>
+				<CustomPieChart />
+			</StatCard>
+		</Box>
+		<StatCard>
+			<Typography component='h2' variant='h6'>
+				Composed Chart
+			</Typography>
+			<CustomComposedChart />
+		</StatCard>
+	</Box>
+)
 export default Dashboard
