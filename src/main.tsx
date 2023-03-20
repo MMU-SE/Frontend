@@ -1,4 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import firebaseConfig from 'config/firebaseConfig'
+import { initializeApp } from 'firebase/app'
+import { browserLocalPersistence, getAuth } from 'firebase/auth'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
@@ -6,12 +9,18 @@ import './i18n'
 import 'typeface-poppins'
 import 'typeface-pt-sans'
 
+// Import mocks
 if (import.meta.env.VITE_ENV === 'DEV') {
 	import('./mocks/browser').catch(() => {})
 }
 
-const MAX_RETRIES = 0
+// Init Firebase
+const firebaseApp = initializeApp(firebaseConfig)
+const authentication = getAuth(firebaseApp)
+authentication.setPersistence(browserLocalPersistence).catch(() => {})
 
+// Init Tanstack Query
+const MAX_RETRIES = 0
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {

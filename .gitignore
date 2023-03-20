@@ -4,6 +4,8 @@ node_modules
 .env.production
 .env.development
 .eslintcache
+.env.development
+.env.production
 .stylelintcache
 src/api/*
 !src/api/swagger.yaml

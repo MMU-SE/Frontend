@@ -1,11 +1,14 @@
 /* eslint-disable unicorn/prevent-abbreviations */
 
 interface ImportMetaEnv {
-	VITE_AUTH0_DOMAIN: string
-	VITE_AUTH0_CLIENT_ID: string
-	VITE_AUTH0_CALLBACK_URL: string
+	VITE_API_BASE_URL: string
+	VITE_FIREBASE_API_KEY: string
+	VITE_FIREBASE_PROJECT_ID: string
+	VITE_FIREBASE_MESSAGING_ID: string
+	VITE_FIREBASE_APP_ID: string
+	VITE_FIREBASE_SAML_PROVIDER_ID: string
 }
 
 interface ImportMeta {
-	readonly env: ImportMetaEnv
+	env: ImportMetaEnv
 }
