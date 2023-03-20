@@ -16,23 +16,25 @@ declare module 'i18next' {
 
 declare module '@mui/material/styles' {
 	interface Palette {
-		lightGrey: Palette['primary']
-		mediumGrey: Palette['primary']
 		darkGrey: Palette['primary']
-		yellow: Palette['primary']
-		lightBlue: Palette['primary']
-		mediumBlue: Palette['primary']
-		darkBlue: Palette['primary']
-		lightText: Palette['primary']
+		mediumGrey: Palette['primary']
+		lightGrey: Palette['primary']
+		lightIndigo: Palette['primary']
+		darkIndigo: Palette['primary']
+		textGrey: Palette['primary']
+		white: Palette['primary']
+		textPrimary: Palette['primary']
+		textSecondary: Palette['primary']
 	}
 	interface PaletteOptions {
-		lightGrey: PaletteOptions['primary']
-		mediumGrey: PaletteOptions['primary']
 		darkGrey: PaletteOptions['primary']
-		yellow: PaletteOptions['primary']
-		lightBlue: PaletteOptions['primary']
-		mediumBlue: PaletteOptions['primary']
-		darkBlue: PaletteOptions['primary']
-		lightText: PaletteOptions['primary']
+		mediumGrey: PaletteOptions['primary']
+		lightGrey: PaletteOptions['primary']
+		lightIndigo: PaletteOptions['primary']
+		darkIndigo: PaletteOptions['primary']
+		textGrey: PaletteOptions['primary']
+		white: PaletteOptions['primary']
+		textPrimary: PaletteOptions['primary']
+		textSecondary: PaletteOptions['primary']
 	}
 }

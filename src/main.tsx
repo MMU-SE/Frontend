@@ -6,6 +6,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
 import './i18n'
+import 'typeface-poppins'
+import 'typeface-pt-sans'
 
 // Import mocks
 if (import.meta.env.VITE_ENV === 'DEV') {

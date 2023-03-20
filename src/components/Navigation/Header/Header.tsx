@@ -20,19 +20,25 @@ const Header = (): ReactElement => {
 			bgcolor='mediumGrey.main'
 			gap={6}
 			sx={{
-				height: 56
+				height: 56,
+				boxShadow: 1
 			}}
 		>
 			<Typography
+				component='h1'
+				variant='h6'
 				sx={{
 					mr: 'auto',
 					ml: 2,
-					color: 'yellow.main'
+					color: 'textPrimary.main'
 				}}
 			>
 				{t('header.title')}
 			</Typography>
-			<SearchBox />
+			<SearchBox
+				placeholder='Search Site'
+				handleSubmitAction={(search: string) => console.log(search)}
+			/>
 			<ThemeSwitcher />
 		</Box>
 	)

@@ -1,64 +1,38 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable unicorn/consistent-function-scoping */
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Box, Button, FormControl, TextField } from '@mui/material'
+import { TextField } from '@mui/material'
 import type { ReactElement } from 'react'
-import { useEffect } from 'react'
-import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
-interface FormInputs {
-	search: string
+interface SearchBoxProperties {
+	handleSubmitAction: (search: string) => void
+	placeholder?: string
 }
 
-const SearchBox = (): ReactElement => {
-	const {
-		register,
-		handleSubmit: onHandleSubmit,
-		formState,
-		reset
-	} = useForm<FormInputs>()
+export const SearchValidationSchema = z.object({
+	search: z.string()
+})
 
-	const onSubmit: SubmitHandler<FormInputs> = data => {
-		// TODO: Do something with the search input
-		console.log(data)
-	}
+const SearchBox = ({
+	handleSubmitAction,
+	placeholder
+}: SearchBoxProperties): ReactElement => {
+	const { register, handleSubmit } =
+		useForm<z.infer<typeof SearchValidationSchema>>()
 
-	useEffect(() => {
-		if (formState.isSubmitSuccessful) {
-			reset({ search: '' })
-		}
-	}, [formState.isSubmitSuccessful, reset])
+	const onSubmit = handleSubmit(({ search }) => {
+		handleSubmitAction(search)
+	})
+
 	return (
-		<Box
-			sx={{
-				display: 'flex',
-				flexDirection: 'row',
-				height: 56,
-				alignItems: 'center'
-			}}
-		>
+		<form onSubmit={onSubmit}>
 			<TextField
-				id='search'
 				label='Search'
-				aria-describedby='search-box'
+				placeholder={placeholder ?? 'Search'}
 				variant='outlined'
 				size='small'
 				{...register('search')}
 			/>
-			<Button
-				onClick={onHandleSubmit(onSubmit)}
-				size='large'
-				variant='contained'
-				sx={{
-					py: 3,
-					ml: 1
-				}}
-			>
-				<FontAwesomeIcon icon={faSearch} />
-			</Button>
-		</Box>
+		</form>
 	)
 }
 
