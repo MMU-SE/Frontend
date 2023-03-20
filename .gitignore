@@ -2,6 +2,8 @@ node_modules
 .DS_Store
 *.local
 .eslintcache
+.env.development
+.env.production
 .stylelintcache
 src/api/*
 !src/api/swagger.yaml
