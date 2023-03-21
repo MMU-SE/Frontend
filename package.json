@@ -13,8 +13,7 @@
 		"format": "prettier -uw --cache --ignore-path .gitignore .",
 		"run-tsc": "tsc",
 		"run-eslint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx .",
-		"run-stylelint": "stylelint --cache --fix --ignore-path .gitignore **/*.css",
-		"lint": "run-p run-tsc run-eslint run-stylelint"
+		"lint": "run-p run-tsc run-eslint"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.10.6",
@@ -85,7 +84,6 @@
 	},
 	"lint-staged": {
 		"*": "prettier -uw --cache",
-		"*.css": "stylelint --cache --fix",
 		"*.{ts,tsx}": "eslint --cache --fix"
 	},
 	"author": "GergoN02",
