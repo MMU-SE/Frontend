@@ -27,6 +27,12 @@ const Dashboard = (): ReactElement => {
 					</Typography>
 					<CustomPieChart />
 				</StatCard>
+				<StatCard>
+					<Typography component='h2' variant='h6' fontFamily='serif'>
+						Bar Chart
+					</Typography>
+					<CustomBarChart />
+				</StatCard>
 			</Box>
 			<StatCard>
 				<Typography component='h2' variant='h6'>
