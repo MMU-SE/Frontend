@@ -17,7 +17,7 @@ const MockToggle = (): ReactElement => {
 			mswStop()
 		} else {
 			setMockingEnabled(true)
-			OpenAPI.BASE = import.meta.env.VITE_API_BASE_URL 
+			OpenAPI.BASE = import.meta.env.VITE_API_BASE_URL
 			localStorage.setItem('mswEnabled', 'true')
 			mswStart()
 		}
