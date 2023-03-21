@@ -25,6 +25,7 @@ declare module '@mui/material/styles' {
 		white: Palette['primary']
 		textPrimary: Palette['primary']
 		textSecondary: Palette['primary']
+		gradient: Palette['primary']
 	}
 	interface PaletteOptions {
 		darkGrey: PaletteOptions['primary']
@@ -36,5 +37,6 @@ declare module '@mui/material/styles' {
 		white: PaletteOptions['primary']
 		textPrimary: PaletteOptions['primary']
 		textSecondary: PaletteOptions['primary']
+		gradient: PaletteOptions['primary']
 	}
 }

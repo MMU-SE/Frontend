@@ -8,6 +8,7 @@ import App from './App'
 import './i18n'
 import 'typeface-poppins'
 import 'typeface-pt-sans'
+import { AuthProvider } from 'contexts/AuthProvider/AuthProvider'
 
 // Import mocks
 if (import.meta.env.VITE_ENV === 'DEV') {
@@ -41,7 +42,9 @@ if (container) {
 	root.render(
 		<StrictMode>
 			<QueryClientProvider client={queryClient}>
-				<App />
+				<AuthProvider>
+					<App />
+				</AuthProvider>
 			</QueryClientProvider>
 		</StrictMode>
 	)

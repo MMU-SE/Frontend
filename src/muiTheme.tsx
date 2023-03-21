@@ -43,7 +43,10 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
 					textGrey: { main: '#EBEBF5' },
 					white: { main: '#FFFFFF' },
 					textPrimary: { main: '#11263C' },
-					textSecondary: { main: '#D0D1D2' }
+					textSecondary: { main: '#D0D1D2' },
+					gradient: {
+						main: 'radial-gradient(circle, rgba(94,92,230,1) 0%, rgba(28,28,30,1) 65%)'
+					}
 			  }
 			: {
 					primary: {
@@ -60,7 +63,10 @@ const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
 					textGrey: { main: '#EBEBF5' },
 					white: { main: '#FFFFFF' },
 					textPrimary: { main: '#FFFFFF' },
-					textSecondary: { main: '#EBEBF5' }
+					textSecondary: { main: '#EBEBF5' },
+					gradient: {
+						main: 'radial-gradient(circle, rgba(94,92,230,1) 0%, rgba(28,28,30,1) 65%)'
+					}
 			  })
 	},
 	spacing: 4,
