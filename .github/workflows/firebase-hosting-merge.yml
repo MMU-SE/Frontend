@@ -17,20 +17,19 @@ jobs:
   prerelease:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          ref: develop
+      - uses: actions/setup-node@v3
+        with:
+          node-verion: 16
+          cahce: 'yarn'
 
-  steps:
-    - uses: actions/checkout@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        fetch-depth: 0
-        ref: develop
-    - uses: actions/setup-node@v3
-      with:
-        node-verion: 16
-        cahce: 'yarn'
-
-    - name: Install dependencies
-      run: HUSKY=0 yarn install --frozen-lockfile
+      - name: Install dependencies
+        run: HUSKY=0 yarn install --frozen-lockfile
   build_and_deploy:
     needs: prerelease
     runs-on: ubuntu-latest
