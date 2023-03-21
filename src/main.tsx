@@ -5,9 +5,11 @@ import { browserLocalPersistence, getAuth } from 'firebase/auth'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
+import './index.css'
 import './i18n'
 import 'typeface-poppins'
 import 'typeface-pt-sans'
+import { AuthProvider } from 'contexts/AuthProvider/AuthProvider'
 
 // Import mocks
 if (import.meta.env.VITE_ENV === 'DEV') {
@@ -41,7 +43,9 @@ if (container) {
 	root.render(
 		<StrictMode>
 			<QueryClientProvider client={queryClient}>
-				<App />
+				<AuthProvider>
+					<App />
+				</AuthProvider>
 			</QueryClientProvider>
 		</StrictMode>
 	)

@@ -1,6 +1,8 @@
 import type { Route } from '@tanstack/react-location'
 import { Navigate, Outlet } from '@tanstack/react-location'
+import ProtectedRoute from 'components/Core/ProtectedRoute/ProtectedRoute'
 import PageWrapper from 'components/Layout/PageWrapper/PageWrapper'
+import SignIn from 'pages/Auth/Login/Login'
 import Dashboard from 'pages/Dashboard/Dashboard'
 import NotFound from 'pages/NotFound/NotFound'
 import Products from 'pages/Products/Products'
@@ -11,6 +13,10 @@ const routes: Route<LocationGenerics>[] = [
 	{
 		path: '/',
 		element: <Navigate to='/user/dashboard' replace />
+	},
+	{
+		path: '/sign-in',
+		element: <SignIn />
 	},
 	{
 		path: '/user',
@@ -24,9 +30,14 @@ const routes: Route<LocationGenerics>[] = [
 				path: 'dashboard',
 				element: <Dashboard />
 			},
+
 			{
 				path: 'products',
-				element: <Outlet />,
+				element: (
+					<ProtectedRoute type='authenticated'>
+						<Outlet />
+					</ProtectedRoute>
+				),
 				children: [
 					{
 						path: '/',

@@ -9,6 +9,7 @@ import { Box, createTheme, CssBaseline, ThemeProvider } from '@mui/material'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import type { LocationGenerics } from 'util/types/Location'
 import getDesignTokens from 'muiTheme'
+import { SnackbarProvider } from 'contexts/SnackbarProvider/SnackbarProvider'
 
 const reactLocation = new ReactLocation<LocationGenerics>()
 
@@ -39,32 +40,34 @@ const App = (): ReactElement => {
 	return (
 		<ColorModeContext.Provider value={colorMode}>
 			<ThemeProvider theme={theme}>
-				<Router location={reactLocation} routes={routes}>
-					<CssBaseline />
-					<Outlet />
-					{import.meta.env.DEV ? (
-						<div id='devtools'>
-							<ReactQueryDevtools initialIsOpen={false} />
-							<ReactLocationDevtools
-								initialIsOpen={false}
-								toggleButtonProps={{
-									style: { marginLeft: 60 }
+				<SnackbarProvider>
+					<Router location={reactLocation} routes={routes}>
+						<CssBaseline />
+						<Outlet />
+						{import.meta.env.DEV ? (
+							<div id='devtools'>
+								<ReactQueryDevtools initialIsOpen={false} />
+								<ReactLocationDevtools
+									initialIsOpen={false}
+									toggleButtonProps={{
+										style: { marginLeft: 60 }
+									}}
+								/>
+							</div>
+						) : undefined}
+						{import.meta.env.DEV ? (
+							<Box
+								sx={{
+									position: 'fixed',
+									bottom: 0,
+									right: 0
 								}}
-							/>
-						</div>
-					) : undefined}
-					{import.meta.env.DEV ? (
-						<Box
-							sx={{
-								position: 'fixed',
-								bottom: 0,
-								right: 0
-							}}
-						>
-							<MockToggle />
-						</Box>
-					) : undefined}
-				</Router>
+							>
+								<MockToggle />
+							</Box>
+						) : undefined}
+					</Router>
+				</SnackbarProvider>
 			</ThemeProvider>
 		</ColorModeContext.Provider>
 	)
