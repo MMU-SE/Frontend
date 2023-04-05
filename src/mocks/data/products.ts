@@ -1,17 +1,16 @@
 import type { Product } from 'api'
 import { faker } from '@faker-js/faker'
+import { generateCategory } from './categories'
 
 faker.seed(1232)
 
 export const generateProduct = (): Product => ({
 	id: faker.datatype.uuid(),
-	name: faker.name.firstName(),
-	description: faker.company.catchPhrase(),
-	price: faker.datatype.number(),
+	sku: faker.datatype.string(5),
+	productName: faker.name.firstName(),
+	unitPrice: faker.datatype.number(),
 	quantity: faker.datatype.number(),
-	category: faker.commerce.department(),
-	createdAt: faker.date.past().toString(),
-	updatedAt: faker.date.past().toString()
+	category: generateCategory()
 })
 
 export const getRandomProducts: Product[] = Array.from(

@@ -3,22 +3,18 @@ import { Box, Typography } from '@mui/material'
 import type { GridColDef, GridRowParams } from '@mui/x-data-grid'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import { useNavigate } from '@tanstack/react-location'
-import type { Category } from 'api'
 import CustomPagination from 'components/Core/CustomPagination/CustomPagination'
+import useCategoriesQuery from 'hooks/queries/useCategoriesQuery'
 import type { UseProductsQueryParameters } from 'hooks/queries/useProductsQuery'
-import useProductsQuery from 'hooks/queries/useProductsQuery'
 import usePagination from 'hooks/usePagination'
 import type { ReactElement } from 'react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { LocationGenerics } from 'util/types/Location'
 
-interface ProductsTableDefinition {
+interface CategoriesTableDefinition {
 	id: string
-	productName: string
-	unitPrice: number
-	quantity: number
-	category: Category
+	name: string
 }
 
 interface TableActionsProperties {
@@ -26,7 +22,7 @@ interface TableActionsProperties {
 	search?: string
 }
 
-const Products = (): ReactElement => {
+const Categories = (): ReactElement => {
 	const { t } = useTranslation('products')
 	const navigate = useNavigate<LocationGenerics>()
 	const {
@@ -44,7 +40,7 @@ const Products = (): ReactElement => {
 		[pageSize, pageNumber]
 	)
 
-	const { data: productsData, isFetching } = useProductsQuery(queryOptions)
+	const { data: categoriesData, isFetching } = useCategoriesQuery(queryOptions)
 
 	const onHandleTableActions = useCallback(
 		({ to }: TableActionsProperties) => {
@@ -54,7 +50,7 @@ const Products = (): ReactElement => {
 		},
 		[navigate]
 	)
-	const columns: GridColDef<ProductsTableDefinition>[] = useMemo(
+	const columns: GridColDef<CategoriesTableDefinition>[] = useMemo(
 		() => [
 			{
 				field: 'id',
@@ -75,43 +71,7 @@ const Products = (): ReactElement => {
 				flex: 1,
 				renderCell: parameters => (
 					<Typography component='h2' variant='subtitle2'>
-						{parameters.row.productName}
-					</Typography>
-				),
-				sortable: false
-			},
-			{
-				field: 'price',
-				headerName: t('table.price'),
-				headerFontWeight: 'bold',
-				flex: 1,
-				renderCell: parameters => (
-					<Typography component='h2' variant='subtitle2'>
-						{parameters.row.unitPrice}
-					</Typography>
-				),
-				sortable: false
-			},
-			{
-				field: 'quantity',
-				headerName: t('table.quantity'),
-				headerFontWeight: 'bold',
-				flex: 1,
-				renderCell: parameters => (
-					<Typography component='h2' variant='subtitle2'>
-						{parameters.row.quantity}
-					</Typography>
-				),
-				sortable: false
-			},
-			{
-				field: 'category',
-				headerName: t('table.category'),
-				headerFontWeight: 'bold',
-				flex: 1,
-				renderCell: parameters => (
-					<Typography component='h2' variant='subtitle2'>
-						{parameters.row.category.name}
+						{parameters.row.name}
 					</Typography>
 				),
 				sortable: false
@@ -120,7 +80,7 @@ const Products = (): ReactElement => {
 				field: 'actions',
 				type: 'actions',
 				flex: 0.2,
-				getActions: (parameters: GridRowParams<ProductsTableDefinition>) => [
+				getActions: (parameters: GridRowParams<CategoriesTableDefinition>) => [
 					<GridActionsCellItem
 						key='view-product'
 						label={t('table.actions.view')}
@@ -138,11 +98,11 @@ const Products = (): ReactElement => {
 		[t, onHandleTableActions]
 	)
 
-	const [rowCountState, setRowCountState] = useState(productsData?.total ?? 0)
+	const [rowCountState, setRowCountState] = useState(categoriesData?.total ?? 0)
 
 	useEffect(() => {
-		setRowCountState(previousState => productsData?.total ?? previousState)
-	}, [productsData, setRowCountState])
+		setRowCountState(previousState => categoriesData?.total ?? previousState)
+	}, [categoriesData, setRowCountState])
 
 	return (
 		<Box
@@ -167,7 +127,7 @@ const Products = (): ReactElement => {
 				onPageSizeChange={onChangePageSize}
 				onPageChange={onChangePage}
 				rowCount={rowCountState}
-				rows={productsData?.data ?? []}
+				rows={categoriesData?.data ?? []}
 				rowsPerPageOptions={[10, 20, 30]}
 				columnBuffer={5}
 				columns={columns}
@@ -179,4 +139,4 @@ const Products = (): ReactElement => {
 	)
 }
 
-export default Products
+export default Categories

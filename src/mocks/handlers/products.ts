@@ -1,16 +1,16 @@
-import type { Product, ProductsResponse } from 'api'
+import type { Product, PaginatedProductsResponse } from 'api'
 import { generateProduct, getRandomProducts } from 'mocks/data/products'
 import { rest } from 'msw'
 
 const handlers = [
-	rest.get<never, never, ProductsResponse>(
-		'/api/v1/products',
+	rest.get<never, never, PaginatedProductsResponse>(
+		'/api/products',
 		(request, response, context) => {
 			const limit = request.url.searchParams.get('limit')
-			const startAfterId = request.url.searchParams.get('startAfterId')
+			const cursor = request.url.searchParams.get('cursor')
 
 			const cursorIndex = getRandomProducts.findIndex(
-				product => product.id === startAfterId
+				product => product.id === cursor
 			)
 
 			const startIndex = cursorIndex >= 0 ? cursorIndex : 0
@@ -21,18 +21,15 @@ const handlers = [
 			const result = {
 				limit: Number(limit),
 				total: getRandomProducts.length,
-				startAfterId:
-					productSlice.length > 0 ? productSlice.at(-1)?.id ?? '' : '',
+				cursor: productSlice.length > 0 ? productSlice.at(-1)?.id ?? '' : '',
 				data: productSlice
 			}
 
 			return response(context.status(200), context.json(result))
 		}
 	),
-	rest.get<never, never, Product>(
-		'/api/v1/products/:id',
-		(_, response, context) =>
-			response(context.status(200), context.json(generateProduct()))
+	rest.get<never, never, Product>('/api/products/:id', (_, response, context) =>
+		response(context.status(200), context.json(generateProduct()))
 	)
 ]
 

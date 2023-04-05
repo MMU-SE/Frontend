@@ -3,6 +3,7 @@ import { Navigate, Outlet } from '@tanstack/react-location'
 import ProtectedRoute from 'components/Core/ProtectedRoute/ProtectedRoute'
 import PageWrapper from 'components/Layout/PageWrapper/PageWrapper'
 import SignIn from 'pages/Auth/Login/Login'
+import Categories from 'pages/Categories/Categories'
 import Dashboard from 'pages/Dashboard/Dashboard'
 import NotFound from 'pages/NotFound/NotFound'
 import Products from 'pages/Products/Products'
@@ -46,6 +47,20 @@ const routes: Route<LocationGenerics>[] = [
 					{
 						path: ':productId',
 						element: <SingleProductView />
+					}
+				]
+			},
+			{
+				path: 'categories',
+				element: (
+					<ProtectedRoute type='authenticated'>
+						<Outlet />
+					</ProtectedRoute>
+				),
+				children: [
+					{
+						path: '/',
+						element: <Categories />
 					}
 				]
 			}

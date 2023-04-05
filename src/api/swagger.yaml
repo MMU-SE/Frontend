@@ -10,24 +10,13 @@ info:
   title: 'Inventory Manager'
 schemes:
   - https
-securityDefinitions:
-  firebase:
-    authorizationUrl: ''
-    flow: implicit
-    type: oauth2
-    x-google-issuer: 'https://securetoken.google.com/${FIREBASE_PROJECT_ID}'
-    x-google-jwks_uri: >-
-      https://www.googleapis.com/service_accounts/v1/metadata/x509/securetoken@system.gserviceaccount.com
-    x-google-audiences: '${FIREBASE_PROJECT_ID}'
-security:
-  - firebase: []
 produces:
   - application/json
 paths:
-  /api/v1/products:
+  /api/products:
     get:
-      summary: Get all products
-      operationId: getAllProducts
+      summary: Get products
+      operationId: getProducts
       tags:
         - Products
       parameters:
@@ -36,14 +25,18 @@ paths:
           required: true
           type: number
         - in: query
-          name: startAfterId
+          name: cursor
           required: false
           type: string
       responses:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/ProductsResponse'
+            $ref: '#/definitions/PaginatedProductsResponse'
+        '400':
+          description: Invalid input parameters
+        '500':
+          description: Internal server error
     post:
       summary: Create new product
       operationId: addProduct
@@ -56,15 +49,21 @@ paths:
             $ref: '#/definitions/ProductCreateRequest'
       responses:
         '201':
-          description: Created
+          description: Product successfully added
           schema:
-            $ref: '#/definitions/Product'
-  /api/v1/products/{id}:
+            $ref: '#/definitions/DetailedProduct'
+        '400':
+          description: Invalid input parameters
+        '404':
+          description: Category not found
+        '500':
+          description: Internal server error
+  /api/products/{id}:
     get:
       summary: Get single products
       operationId: getProduct
       tags:
-        - Product
+        - Products
       parameters:
         - in: path
           name: id
@@ -74,12 +73,16 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/Product'
+            $ref: '#/definitions/DetailedProduct'
+        '400':
+          description: Invalid input parameters
+        '500':
+          description: Internal server error
     put:
       summary: Update product
       operationId: updateProduct
       tags:
-        - Product
+        - Products
       parameters:
         - in: path
           name: id
@@ -93,110 +96,453 @@ paths:
         '201':
           description: Created
           schema:
-            $ref: '#/definitions/Product'
+            $ref: '#/definitions/DetailedProduct'
+        '400':
+          description: Invalid input parameters
+        '404':
+          description: Category not found
+        '500':
+          description: Internal server error
     delete:
       summary: Delete product
       operationId: deleteProduct
       tags:
-        - Product
+        - Products
       parameters:
         - in: path
           name: id
           required: true
           type: string
       responses:
-        '202':
-          description: Accepted
+        '204':
+          description: No Content
+        '400':
+          description: Invalid input parameters
+        '500':
+          description: Internal server error
+  /api/categories:
+    get:
+      summary: Get categories
+      operationId: getCategories
+      tags:
+        - Categories
+      parameters:
+        - in: query
+          name: limit
+          required: true
+          type: number
+        - in: query
+          name: cursor
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PaginatedCategoryResponse'
+        '400':
+          description: Invalid input parameters
+        '500':
+          description: Internal server error
+    post:
+      summary: Create new category
+      operationId: addCategory
+      tags:
+        - Categories
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/CategoryCreateRequest'
+      responses:
+        '201':
+          description: Category successfully added
+          schema:
+            $ref: '#/definitions/DetailedCategory'
+        '400':
+          description: Invalid input parameters
+        '500':
+          description: Internal server error
+  /api/categories/{id}:
+    get:
+      summary: Get single category
+      operationId: getCategory
+      tags:
+        - Category
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/DetailedCategory'
+        '400':
+          description: Invalid input parameters
+        '500':
+          description: Internal server error
+    put:
+      summary: Update category
+      operationId: updateCategory
+      tags:
+        - Category
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: string
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/CategoryUpdateRequest'
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/DetailedCategory'
+        '400':
+          description: Invalid input parameters
+        '500':
+          description: Internal server error
+    delete:
+      summary: Delete category
+      operationId: deleteCategory
+      tags:
+        - Category
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Invalid input parameters
+        '409':
+          description: Conflict, related items
+        '500':
+          description: Internal server error
+  /api/products/history/{id}:
+    get:
+      summary: Get product history
+      operationId: getHistory
+      tags:
+        - History
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ProductHistoryResponse'
+        '400':
+          description: Invalid input parameters
+        '500':
+          description: Internal server error
+  /api/checkin:
+    post:
+      summary: Check in new products
+      operationId: checkIn
+      tags:
+        - CheckIn
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/CheckInOutRequest'
+      responses:
+        '201':
+          description: Items checked in successfully
+        '400':
+          description: Invalid input parameters
+        '500':
+          description: Internal server error
+  /api/checkout:
+    post:
+      summary: Check out sold products
+      operationId: checkOut
+      tags:
+        - CheckOut
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/CheckInOutRequest'
+      responses:
+        '201':
+          description: Items checked out successfully
+        '400':
+          description: Invalid input parameters
+        '409':
+          description: Conflict, not enugh products
+        '500':
+          description: Internal server error
 definitions:
-  ProductsResponse:
-    type: object
-    required:
-      - limit
-      - startAfterId
-      - total
-      - data
-    properties:
-      limit:
-        type: number
-        example: 20
-      total:
-        type: number
-        example: 50
-      startAfterId:
-        type: string
-        example: 'uuid'
-      data:
-        type: array
-        items:
-          $ref: '#/definitions/Product'
   Product:
     type: object
     required:
       - id
-      - name
-      - description
-      - price
+      - sku
+      - productName
       - quantity
       - category
+      - unitPrice
+    properties:
+      id:
+        type: string
+        format: cuid
+        example: 1234567
+      sku:
+        type: string
+        example: 'PROD-123'
+      productName:
+        type: string
+        example: 'Blue Pencil'
+      quantity:
+        type: number
+        example: 20
+      category:
+        $ref: '#/definitions/Category'
+      unitPrice:
+        type: number
+        example: 100
+  DetailedProduct:
+    type: object
+    required:
+      - id
+      - sku
+      - productName
+      - description
+      - quantity
+      - category
+      - unitPrice
       - createdAt
       - updatedAt
     properties:
       id:
         type: string
-        format: uuid
-        example: e67a1c65-085a-4794-b070-1d33e305930c
-      name:
+        format: cuid
+        example: 1234567
+      sku:
+        type: string
+        example: 'PROD-123'
+      productName:
         type: string
         example: 'Blue Pencil'
       description:
         type: string
         example: 'Nice pencil'
-      price:
-        type: number
-        example: 100
       quantity:
         type: number
         example: 20
       category:
-        type: string
-        example: 'Office supplies'
+        $ref: '#/definitions/Category'
+      unitPrice:
+        type: number
+        example: 100
       createdAt:
         type: string
         example: '2011-10-05T14:48:00.000Z'
       updatedAt:
         type: string
         example: '2011-10-05T14:48:00.000Z'
+  PaginatedProductsResponse:
+    type: object
+    required:
+      - total
+      - limit
+      - cursor
+      - products
+    properties:
+      total:
+        type: number
+        example: 50
+      limit:
+        type: number
+        example: 20
+      cursor:
+        type: string
+        format: 'cuid'
+        example: 1234567
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/Product'
   ProductCreateRequest:
     type: object
     required:
-      - name
+      - sku
+      - productName
       - description
       - quantity
+      - categoryId
+      - unitPrice
     properties:
-      name:
+      sku:
+        type: string
+        example: 'PROD-123'
+      productName:
         type: string
         example: 'Blue Pencil'
       description:
         type: string
-        example: 'Nice pencil to draw with'
+        example: 'Nice pencil'
       quantity:
         type: number
         example: 10
+      categoryId:
+        type: string
+        format: cuid
+        example: '1234567'
+      unitPrice:
+        type: number
+        example: 100
   ProductUpdateRequest:
     type: object
-    required:
-      - id
     properties:
-      id:
+      sku:
         type: string
-        format: uuid
-        example: e67a1c65-085a-4794-b070-1d33e305930c
-      name:
+        example: 'PROD-123'
+      productName:
         type: string
         example: 'Nice Pencil'
+      quantity:
+        type: number
+        example: 20
+      categoryId:
+        type: string
+        format: cuid
+        example: 1234567
       description:
         type: string
         example: 'Nice pencil'
-      price:
+      unitPrice:
         type: number
         example: 100
+  Category:
+    type: object
+    required:
+      - id
+      - name
+    properties:
+      id:
+        type: string
+        format: cuid
+        example: 1234567
+      name:
+        type: string
+        example: 'Stationery'
+  DetailedCategory:
+    type: object
+    required:
+      - id
+      - name
+    properties:
+      id:
+        type: string
+        format: cuid
+        example: 1234567
+      name:
+        type: string
+        example: 'Stationery'
+      description:
+        type: string
+        example: 'Home office supplies'
+  PaginatedCategoryResponse:
+    type: object
+    required:
+      - total
+      - limit
+      - cursor
+      - categories
+    properties:
+      total:
+        type: number
+        example: 50
+      limit:
+        type: number
+        example: 20
+      cursor:
+        type: string
+        format: 'cuid'
+        example: 1234567
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/DetailedCategory'
+  CategoryCreateRequest:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+        example: 'Office Supplies'
+      description:
+        type: string
+        example: 'Home office stationery and items'
+  CategoryUpdateRequest:
+    type: object
+    properties:
+      name:
+        type: string
+        example: 'Office Supplies'
+      description:
+        type: string
+        example: 'Home office stationery and items'
+  ProductHistoryResponse:
+    type: object
+    required:
+      - id
+      - productName
+      - history
+    properties:
+      id:
+        type: string
+        format: cuid
+        example: 1234567
+      productName:
+        type: string
+        example: 'Pencil'
+      history:
+        type: array
+        items:
+          $ref: '#/definitions/HistoryDefinition'
+  HistoryDefinition:
+    type: object
+    required:
+      - dateTime
+      - quantity
+    properties:
+      dateTime:
+        type: string
+        format: 'date-time'
+        example: '2022-03-25T14:30:00Z'
+      quantity:
+        type: number
+        example: 20
+      notes:
+        type: string
+        example: 'Added by Bob'
+  CheckInOutRequest:
+    type: object
+    required:
+      - productId
+      - quantity
+    properties:
+      productId:
+        type: string
+        format: cuid
+        example: 1234567
+      quantiy:
+        type: number
+        example: 20
+      notes:
+        type: string
+        example: 'Checked in by Bob'
