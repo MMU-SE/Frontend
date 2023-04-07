@@ -34,13 +34,13 @@ const SingleProductView = (): ReactElement => {
 				Product Name
 			</Typography>
 			<Typography component='body' variant='body1'>
-				{productData?.name}
+				{productData?.productName}
 			</Typography>
 			<Typography component='h2' variant='h5'>
 				Price
 			</Typography>
 			<Typography component='body' variant='body1'>
-				{productData?.price}
+				{productData?.unitPrice}
 			</Typography>
 			<Typography component='h2' variant='h5'>
 				Quantity
@@ -52,7 +52,7 @@ const SingleProductView = (): ReactElement => {
 				Category
 			</Typography>
 			<Typography component='body' variant='body1'>
-				{productData?.category}
+				{productData?.category.name}
 			</Typography>
 		</Box>
 	)

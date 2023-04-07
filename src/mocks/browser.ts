@@ -14,6 +14,8 @@ export const mswStop = (): void => {
 if (localStorage.getItem('mswEnabled') === 'true') {
 	OpenAPI.BASE = ''
 	worker.start().catch(() => {})
+} else {
+	OpenAPI.BASE = import.meta.env.VITE_API_BASE_URL
 }
 
 export default worker

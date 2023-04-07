@@ -6,6 +6,13 @@
 import 'i18next'
 import type { defaultNS, resources } from 'locales'
 
+declare global {
+	interface Window {
+		mswStart: () => void
+		mswStop: () => void
+	}
+}
+
 declare module 'i18next' {
 	// Extend the i18next types for autocomplete
 	interface CustomTypeOptions {

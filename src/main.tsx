@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import firebaseConfig from 'config/firebaseConfig'
 import { initializeApp } from 'firebase/app'
@@ -9,10 +10,13 @@ import './i18n'
 import 'typeface-poppins'
 import 'typeface-pt-sans'
 import { AuthProvider } from 'contexts/AuthProvider/AuthProvider'
+import { OpenAPI } from 'api'
 
 // Import mocks
 if (import.meta.env.VITE_ENV === 'DEV') {
 	import('./mocks/browser').catch(() => {})
+} else {
+	OpenAPI.BASE = import.meta.env.VITE_API_BASE_URL as string
 }
 
 // Init Firebase
