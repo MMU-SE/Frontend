@@ -1,13 +1,43 @@
 {
-	"title": "Products",
-	"table": {
-		"id": "Product ID",
-		"name": "Product Name",
-		"price": "Price",
-		"quantity": "Quantity",
-		"category": "Category",
-		"actions": {
-			"view": "View Product"
-		}
-	}
+  "title": "Products",
+  "table": {
+    "id": "Product ID",
+    "name": "Product Name",
+    "price": "Price",
+    "quantity": "Quantity",
+    "category": "Category",
+    "actions": {
+      "view": "View Product"
+    }
+  },
+  "add_product": {
+    "title": "Add Product",
+    "button": "Add Product"
+  },
+  "product_form": {
+    "common": {
+      "required": "This field is required",
+      "max_length": "This field must be less than {{maxLength}} characters"
+    },
+    "sku": {
+      "label": "SKU",
+      "placeholder": "Enter SKU"
+    },
+    "product_name": {
+      "label": "Product Name",
+      "placeholder": "Enter Product Name"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Enter Description"
+    },
+    "quantity": {
+      "label": "Quantity",
+      "placeholder": "Enter Quantity"
+    },
+    "unit_price": {
+      "label": "Unit Price",
+      "placeholder": "Enter Unit Price"
+    }
+  }
 }
